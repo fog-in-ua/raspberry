@@ -9,4 +9,4 @@ $ docker run \
    -v /run/udev:/run/udev:ro \
    -e TZ=Europe/Amsterdam \
    koenkk/zigbee2mqtt
-# curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/ultimateinstall.sh | sudo bash -
+# curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/test.sh | sudo bash -
