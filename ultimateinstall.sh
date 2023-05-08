@@ -120,11 +120,12 @@ wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P 
 
 sudo docker run \
    --name zigbee2mqtt \
-   --restart=unless-stopped \
-   --device=/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20221201165558-if00:/dev/ttyACM0 \
+   --device=/dev/ttyACM0 \
+   --net host \
+   --restart always \
    -v $(pwd)/data:/app/data \
    -v /run/udev:/run/udev:ro \
-   -e TZ=Europe/Kyiv \
+   -e TZ=Asia/Dubai \
    koenkk/zigbee2mqtt
 echo "----------------------------------------------------------------"
 echo "Z2M Interface is reachable at homebridge.local:8082"
