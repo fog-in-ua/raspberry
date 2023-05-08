@@ -1,5 +1,5 @@
 #!/bin/bash
-
+wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P data
 sudo docker run \
    --name zigbee2mqtt \
    --restart=unless-stopped \
