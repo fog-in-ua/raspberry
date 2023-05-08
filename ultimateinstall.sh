@@ -47,7 +47,7 @@ echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge
 sudo apt-get update
 sudo apt-get install -y homebridge
 echo "----------------------------------------------------------------"
-echo "Homebridge Interface is reachable at homebridge.local:8581""
+echo "Homebridge Interface is reachable at homebridge.local:8581"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
