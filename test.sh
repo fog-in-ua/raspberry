@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$ docker run \
+docker run \
    --name zigbee2mqtt \
    --restart=unless-stopped \
    --device=/dev/ttyACM0 \
