@@ -123,7 +123,7 @@ sudo docker run \
    -e TZ=Asia/Dubai \
    koenkk/zigbee2mqtt
 echo "----------------------------------------------------------------"
-echo "Z2M Interface is reachable at homebridge.local:8081"
+echo "Z2M Interface is reachable at homebridge.local:8082"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
