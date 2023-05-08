@@ -42,10 +42,10 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence Homebridge Setup"
 echo "----------------------------------------------------------------"
-curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y homebridge
+#curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
+#echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
+#sudo apt-get update
+#sudo apt-get install -y homebridge
 echo "----------------------------------------------------------------"
 echo "Homebridge Interface is reachable at homebridge.local:8581"
 echo "----------------------------------------------------------------"
@@ -77,7 +77,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence Watch Tower Setup"
 echo "----------------------------------------------------------------"
-sudo docker run --name="watchtower" -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
+#sudo docker run --name="watchtower" -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
 echo "----------------------------------------------------------------"
 echo "Watch Tower Setup Completed"
 echo "----------------------------------------------------------------"
@@ -87,7 +87,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence Scypted Docker Setup"
 echo "----------------------------------------------------------------"
-sudo docker run --name="scrypted" --network host -d --restart unless-stopped -v ~/.scrypted/volume:/server/volume koush/scrypted
+#sudo docker run --name="scrypted" --network host -d --restart unless-stopped -v ~/.scrypted/volume:/server/volume koush/scrypted
 echo "----------------------------------------------------------------"
 echo "Scrypted Interface is reachable at https://localhost:10443/"
 echo "----------------------------------------------------------------"
