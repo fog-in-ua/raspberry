@@ -110,9 +110,13 @@ echo " "
 # Z2M setup
 echo "----------------------------------------------------------------"
 echo "Commence Zigbee2MQTT Setup"
+     #################################################################################
+     #                                                                               #
+     #  Щою скрипт запрацював, потрібне фізичне підключення Zigbee2MQTT в порт USB   #
+     #  Розміщення USB девайсу, має бути /dev/ttyUSB0
+     ##################################################################################
 echo "----------------------------------------------------------------"
 wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P data
-#sudo docker run -it --name zigbee2mqtt --device=/dev/ttyUSB0 --restart always --net host -tid -p 8082 -v $(pwd)/data:/app/data -v /run/udev:/run/udev:ro -e TZ=Asia/Dubai koenkk/zigbee2mqtt
 #sudo docker run \
 #   --name zigbee2mqtt \
 #   --device=/dev/ttyACM0 \
@@ -125,7 +129,7 @@ wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P 
 sudo docker run \
    --name zigbee2mqtt \
    --restart=unless-stopped \
-   --device=/dev/ttyUSB0 \
+   --device=/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20221201165558-if00:/dev/ttyACM0 \
    -p 8082:8082 \
    -v $(pwd)/data:/app/data \
    -v /run/udev:/run/udev:ro \
