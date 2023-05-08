@@ -14,35 +14,35 @@
 # Ви мали отримати копію GNU General Public License разом із цією програмою.                     #
 # Якщо ні, див <http://www.gnu.org/licenses/>.                                                   #
 ##################################################################################################
-echo " "
-echo " "
-echo " "
+#echo " "
+#echo " "
+#echo " "
 # System Upgrade
-echo "----------------------------------------------------------------"
-echo "Commence System Upgrade"
-echo "----------------------------------------------------------------"
-sudo apt-get update && sudo apt-get upgrade -y
-sudo rpi-eeprom-update -d -a
-echo "----------------------------------------------------------------"
-echo "System Upgrade Completed"
-echo "----------------------------------------------------------------"
-echo " "
-echo " "
-echo " "
+#echo "----------------------------------------------------------------"
+#echo "Commence System Upgrade"
+#echo "----------------------------------------------------------------"
+#sudo apt-get update && sudo apt-get upgrade -y
+#sudo rpi-eeprom-update -d -a
+#echo "----------------------------------------------------------------"
+#echo "System Upgrade Completed"
+#echo "----------------------------------------------------------------"
+#echo " "
+#echo " "
+#echo " "
 # Homebridge setup
-echo "----------------------------------------------------------------"
-echo "Commence Homebridge Setup"
-echo "----------------------------------------------------------------"
-curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
-sudo apt-get update
-sudo apt-get install homebridge
-echo "----------------------------------------------------------------"
-echo "Homebridge Interface is reachable at homebridge.local:8581""
-echo "----------------------------------------------------------------"
-echo " "
-echo " "
-echo " "
+#echo "----------------------------------------------------------------"
+#echo "Commence Homebridge Setup"
+#echo "----------------------------------------------------------------"
+#curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
+#echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
+#sudo apt-get update
+#sudo apt-get install homebridge
+#echo "----------------------------------------------------------------"
+#echo "Homebridge Interface is reachable at homebridge.local:8581""
+#echo "----------------------------------------------------------------"
+#echo " "
+#echo " "
+#echo " "
 # Docker setup
 echo "----------------------------------------------------------------"
 echo "Commence Docker Setup"
