@@ -63,16 +63,32 @@ echo "Docker Setup Completed"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# Portainer setup
+# Portainer_agent setup
 echo "----------------------------------------------------------------"
-echo "Commence Portainer Setup"
+echo "Commence Portainer_agent Setup"
 echo "----------------------------------------------------------------"
-#sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+sudo docker run -d \
+    -p 9001:9001 \
+    --name portainer_agent \
+    --restart=always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /var/lib/docker/volumes:/var/lib/docker/volumes \
+    portainer/agent:2.18.2
 echo "----------------------------------------------------------------"
 echo "Portainer Interface is reachable at homebridge.local:9000"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
+# Portainer setup
+#echo "----------------------------------------------------------------"
+#echo "Commence Portainer Setup"
+#echo "----------------------------------------------------------------"
+#sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+#echo "----------------------------------------------------------------"
+#echo "Portainer Interface is reachable at homebridge.local:9000"
+#echo "----------------------------------------------------------------"
+#echo " "
+#echo " "
 # Watch Tower setup
 echo "----------------------------------------------------------------"
 echo "Commence Watch Tower Setup"
