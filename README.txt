@@ -11,3 +11,8 @@ curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/ultimateinst
     Scrypted
     MQTT
     Zigbee2MQTT
+
+
+
+
+apt install net-tools
