@@ -16,3 +16,5 @@ curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/ultimateinst
 
 
 apt install net-tools
+systemctl reboot
+systemctl poweroff
