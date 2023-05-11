@@ -20,8 +20,8 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence System Upgrade"
 echo "----------------------------------------------------------------"
-sudo apt-get update && sudo apt-get upgrade -y
-sudo rpi-eeprom-update -d -a
+#sudo apt-get update && sudo apt-get upgrade -y
+#sudo rpi-eeprom-update -d -a
 echo "----------------------------------------------------------------"
 echo "System Upgrade Completed"
 echo "----------------------------------------------------------------"
@@ -31,8 +31,8 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence MC Setup"
 echo "----------------------------------------------------------------"
-sudo apt-get update
-sudo apt-get install -y mc
+#sudo apt-get update
+#sudo apt-get install -y mc
 echo "----------------------------------------------------------------"
 echo "MC Setup Completed"
 echo "----------------------------------------------------------------"
@@ -42,10 +42,10 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence Homebridge Setup"
 echo "----------------------------------------------------------------"
-#curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
-#echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
-#sudo apt-get update
-#sudo apt-get install -y homebridge
+curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y homebridge
 echo "----------------------------------------------------------------"
 echo "Homebridge Interface is reachable at homebridge.local:8581"
 echo "----------------------------------------------------------------"
@@ -103,7 +103,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence HEIMDALL Setup"
 echo "----------------------------------------------------------------"
-#sudo docker run --name=heimdall -d --restart unless-stopped -v /home/kodestar/docker/heimdall:/config -e PGID=1000 -e PUID=1000 -p 8201:80 -p 8200:443 linuxserver/heimdall
+sudo docker run --name=heimdall -d --restart unless-stopped -v /home/kodestar/docker/heimdall:/config -e PGID=1000 -e PUID=1000 -p 8201:80 -p 8200:443 linuxserver/heimdall
 echo "----------------------------------------------------------------"
 echo "HEIMDALL Interface is reachable at homebridge.local:8201"
 echo "----------------------------------------------------------------"
@@ -113,7 +113,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence Scypted Docker Setup"
 echo "----------------------------------------------------------------"
-#sudo docker run --name="scrypted" --network host -d --restart unless-stopped -v ~/.scrypted/volume:/server/volume koush/scrypted
+sudo docker run --name="scrypted" --network host -d --restart unless-stopped -v ~/.scrypted/volume:/server/volume koush/scrypted
 echo "----------------------------------------------------------------"
 echo "Scrypted Interface is reachable at https://localhost:10443/"
 echo "----------------------------------------------------------------"
@@ -123,11 +123,11 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence MQTT Setup"
 echo "----------------------------------------------------------------"
-#sudo mkdir mosquitto
-#sudo mkdir mosquitto/config/
-#sudo mkdir mosquitto/data/
-#sudo wget https://raw.githubusercontent.com/fog-in-ua/max/main/mosquitto.conf -P /home/pi/mosquitto/config/
-#sudo docker run -it --name MQTT --restart=always --net=host -tid -p 1883:1883 -v $(pwd)/mosquitto:/mosquitto/ eclipse-mosquitto
+sudo mkdir mosquitto
+sudo mkdir mosquitto/config/
+sudo mkdir mosquitto/data/
+sudo wget https://raw.githubusercontent.com/fog-in-ua/max/main/mosquitto.conf -P /home/pi/mosquitto/config/
+sudo docker run -it --name MQTT --restart=always --net=host -tid -p 1883:1883 -v $(pwd)/mosquitto:/mosquitto/ eclipse-mosquitto
 echo "----------------------------------------------------------------"
 echo "MQTT Setup Completed"
 echo "----------------------------------------------------------------"
@@ -137,17 +137,17 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence Zigbee2MQTT Setup"
 echo "----------------------------------------------------------------"
-#wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P data
+wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P data
 
-#sudo docker run \
-#   --name zigbee2mqtt \
-#   --device=/dev/ttyACM0 \
-#   --net host \
-#   --restart always \
-#   -v $(pwd)/data:/app/data \
-#   -v /run/udev:/run/udev:ro \
-#   -e TZ=Asia/Dubai \
-#   koenkk/zigbee2mqtt
+sudo docker run \
+   --name zigbee2mqtt \
+   --device=/dev/ttyACM0 \
+   --net host \
+   --restart always \
+   -v $(pwd)/data:/app/data \
+   -v /run/udev:/run/udev:ro \
+   -e TZ=Asia/Dubai \
+   koenkk/zigbee2mqtt
 echo "----------------------------------------------------------------"
 echo "Z2M Interface is reachable at homebridge.local:8082"
 echo "----------------------------------------------------------------"
