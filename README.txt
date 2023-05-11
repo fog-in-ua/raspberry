@@ -12,6 +12,15 @@ curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/ultimateinst
     MQTT
     Zigbee2MQTT
 
+nodhcp
+interface eth0
+static ip_address=10.10.10.108/24
+static routers=10.10.10.1
+static domain_name_servers=1.1.1.1 8.8.8.8
+
+записати # nameserver 8.8.8.8 в кінецт файла
+echo "# nameserver 8.8.8.8" >> /home/ihor.koliukh/dhcpd.conf
+
 
 
 
