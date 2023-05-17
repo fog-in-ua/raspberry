@@ -1,5 +1,5 @@
 # ultimateinstall.sh
-curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/ultimateinstall.sh | sudo bash -
+curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/home-control.sh | sudo bash -
     System Upgrade
     MC
     Homebridge
