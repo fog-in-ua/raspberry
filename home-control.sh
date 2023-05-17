@@ -108,7 +108,20 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "  Homebridge Setup"
 echo "----------------------------------------------------------------"
-#
+sudo docker run --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
+version: '2'
+services:
+  homebridge:
+    image: oznu/homebridge:latest
+    restart: always
+    network_mode: host
+    volumes:
+      - ./volumes/homebridge:/homebridge
+    logging:
+      driver: json-file
+      options:
+        max-size: "10mb"
+        max-file: "1"
 echo "----------------------------------------------------------------"
 echo "  Homebridge Interface is reachable at homebridge.local:8581"
 echo "----------------------------------------------------------------"
