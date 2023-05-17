@@ -61,6 +61,37 @@ echo "Scrypted Interface is reachable at  https://localhost:10443/"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
+# MQTT Install
+echo "----------------------------------------------------------------"
+echo "Commence MQTT Setup"
+echo "----------------------------------------------------------------"
+sudo apt update
+sudo apt upgrade
+sudo apt install mosquitto mosquitto-clients
+echo "----------------------------------------------------------------"
+echo "MQTT Setup Completed"
+echo "----------------------------------------------------------------"
+echo " "
+echo " "
+# Zigbee2MQTT setup
+# https://www.zigbee2mqtt.io/guide/installation/01_linux.html
+echo "----------------------------------------------------------------"
+echo "Commence Zigbee2MQTT Setup"
+echo "----------------------------------------------------------------"
+sudo curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs git make g++ gcc
+sudo mkdir /opt/zigbee2mqtt
+sudo chown -R ${USER}: /opt/zigbee2mqtt
+git clone --depth 1 https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt
+cd /opt/zigbee2mqtt
+npm ci
+sudo snap install node --classic
+wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -O /opt/zigbee2mqtt/data/configuration.yaml
+echo "----------------------------------------------------------------"
+echo "Z2M Interface is reachable at localhost:8082"
+echo "----------------------------------------------------------------"
+echo " "
+echo " "
 echo " "
 echo " "
 echo "----------------------------------------------------------------"
