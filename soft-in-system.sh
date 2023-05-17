@@ -5,16 +5,12 @@
 #                                                                                                     #
 # curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/soft-in-system.sh | sudo bash - #
 #    System Upgrade                                                                                   #
-#    MC                                                                                               #
-#    Docker                                                                                           #
-#       Homebridge                                                                                    #
-#       Scrypted                                                                                      #
-#       Portainer_agent                                                                               #
-#       Portainer                                                                                     #
-#       Watch Tower                                                                                   #
-#       HEIMDALL                                                                                      #
-#       MQTT                                                                                          #
-#       Zigbee2MQTT                                                                                   #
+#    MC                                                                                               #                                                                                         #
+#    Homebridge                                                                                       #
+#    Scrypted                                                                                         #                                                                                 #
+#    HEIMDALL                                                                                         #
+#    MQTT                                                                                             #
+#    Zigbee2MQTT                                                                                      #
 #                                                                                                     #
 # Ця програма є безкоштовним програмним забезпеченням: ви можете поширювати її та/або                 #
 # змінювати згідно з умовами GNU General Public License, опублікованої Free Software                  #
@@ -70,85 +66,21 @@ echo "  Scrypted Interface is reachable at https://localhost:10443"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
+
+
 echo "----------------------------------------------------------------"
-echo "   Docker Setup"
+echo "   HEIMDALL Setup"
 echo "----------------------------------------------------------------"
-sudo curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo usermod -aG docker pi
-echo "----------------------------------------------------------------"
-echo "   Docker Setup Completed"
-echo "----------------------------------------------------------------"
-echo " "
-echo " "
-#echo "----------------------------------------------------------------"
-#echo "  Portainer_agent Setup in Docker"
-#echo "----------------------------------------------------------------"
-#sudo docker run -d \
-#    -p 9001:9001 \
-#    --name portainer_agent \
-#    --restart=always \
-#    -v /var/run/docker.sock:/var/run/docker.sock \
-#    -v /var/lib/docker/volumes:/var/lib/docker/volumes \
-#    portainer/agent:2.18.2
-##echo "----------------------------------------------------------------"
-#echo "  Portainer Interface is reachable at homebridge.local:9000"
-#echo "----------------------------------------------------------------"
-#echo " "
-#echo " "
-echo "----------------------------------------------------------------"
-echo "   Portainer Setup in Docker"
-echo "----------------------------------------------------------------"
-sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-echo "----------------------------------------------------------------"
-echo "   Portainer Interface is reachable at homebridge.local:9000"
-echo "----------------------------------------------------------------"
-echo " "
-echo " "
-echo "----------------------------------------------------------------"
-echo "   Watch Tower Setup in Docker"
-echo "----------------------------------------------------------------"
-sudo docker run --name="watchtower" -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
-echo "----------------------------------------------------------------"
-echo "   Watch Tower Setup Completed"
-echo "----------------------------------------------------------------"
-echo " "
-echo " "
-#echo "----------------------------------------------------------------"
-#echo "  Homebridge Setup"
-#echo "----------------------------------------------------------------"
-#sudo docker run --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
-#echo "----------------------------------------------------------------"
-#echo "  Homebridge Interface is reachable at homebridge.local:8581"
-#echo "----------------------------------------------------------------"
-#echo " "
-#echo " "
-echo "----------------------------------------------------------------"
-echo "   HEIMDALL Setup in Docker"
-echo "----------------------------------------------------------------"
-sudo docker run --name=heimdall -d --restart unless-stopped -v /home/kodestar/docker/heimdall:/config -e PGID=1000 -e PUID=1000 -p 8201:80 -p 8200:443 linuxserver/heimdall
+#
 echo "----------------------------------------------------------------"
 echo "   HEIMDALL Interface is reachable at homebridge.local:8201"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
 echo "----------------------------------------------------------------"
-echo "   Scypted Setup in Docker"
-echo "----------------------------------------------------------------"
-sudo docker run --name="scrypted" --network host -d --restart unless-stopped -v ~/.scrypted/volume:/server/volume koush/scrypted
-echo "----------------------------------------------------------------"
-echo "   Scrypted Interface is reachable at https://localhost:10443/"
-echo "----------------------------------------------------------------"
-echo " "
-echo " "
-echo "----------------------------------------------------------------"
 echo "   MQTT Setup in Docker"
 echo "----------------------------------------------------------------"
-sudo mkdir mosquitto
-sudo mkdir mosquitto/config/
-sudo mkdir mosquitto/data/
-sudo wget https://raw.githubusercontent.com/fog-in-ua/config/main/mosquitto.conf -P /home/pi/mosquitto/config/
-sudo docker run -it --name MQTT --restart=always --net=host -tid -p 1883:1883 -v $(pwd)/mosquitto:/mosquitto/ eclipse-mosquitto
+#
 echo "----------------------------------------------------------------"
 echo "   MQTT Setup Completed in Docker"
 echo "----------------------------------------------------------------"
@@ -157,17 +89,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "   Zigbee2MQTT Setup in Docker"
 echo "----------------------------------------------------------------"
-wget https://raw.githubusercontent.com/fog-in-ua/config/main/configuration.yaml -P data
-
-sudo docker run \
-   --name zigbee2mqtt \
-   --device=/dev/ttyACM0 \
-   --net host \
-   --restart always \
-   -v $(pwd)/data:/app/data \
-   -v /run/udev:/run/udev:ro \
-   -e TZ=Asia/Dubai \
-   koenkk/zigbee2mqtt
+#
 echo "----------------------------------------------------------------"
 echo "   Z2M Interface is reachable at homebridge.local:8082"
 echo "----------------------------------------------------------------"
