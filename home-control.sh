@@ -129,7 +129,7 @@ echo "----------------------------------------------------------------"
 sudo mkdir mosquitto
 sudo mkdir mosquitto/config/
 sudo mkdir mosquitto/data/
-sudo wget https://raw.githubusercontent.com/fog-in-ua/max/main/mosquitto.conf -P /home/pi/mosquitto/config/
+sudo wget https://raw.githubusercontent.com/fog-in-ua/config/main/mosquitto.conf -P /home/pi/mosquitto/config/
 sudo docker run -it --name MQTT --restart=always --net=host -tid -p 1883:1883 -v $(pwd)/mosquitto:/mosquitto/ eclipse-mosquitto
 echo "----------------------------------------------------------------"
 echo "   MQTT Setup Completed in Docker"
@@ -139,7 +139,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "   Zigbee2MQTT Setup in Docker"
 echo "----------------------------------------------------------------"
-wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P data
+wget https://raw.githubusercontent.com/fog-in-ua/config/main/configuration.yaml -P data
 
 sudo docker run \
    --name zigbee2mqtt \
