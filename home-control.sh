@@ -83,7 +83,6 @@ sudo chown -R ${USER}: /opt/zigbee2mqtt
 git clone --depth 1 https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt
 cd /opt/zigbee2mqtt
 npm ci
-sudo snap install node --classic
 wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -O /opt/zigbee2mqtt/data/configuration.yaml
 echo "----------------------------------------------------------------"
 echo "Z2M Interface is reachable at localhost:8082"
