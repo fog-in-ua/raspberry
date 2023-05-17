@@ -3,7 +3,7 @@
 #####################################################################################################
 # Редакція для Rasberry Pi                                       Copyright (C) 2023 Ihor Koliukh    #
 #                                                                                                   #
-# curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/home-control.sh | sudo bash - #
+# curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/soft-in-docker.sh | sudo bash - #
 #    System Upgrade                                                                                 #
 #    MC                                                                                             #
 #    Docker                                                                                         #
