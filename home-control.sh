@@ -65,9 +65,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence MQTT Setup"
 echo "----------------------------------------------------------------"
-sudo apt update
-sudo apt upgrade
-sudo apt install mosquitto mosquitto-clients
+sudo apt install -y mosquitto mosquitto-clients
 echo "----------------------------------------------------------------"
 echo "MQTT Setup Completed"
 echo "----------------------------------------------------------------"
