@@ -33,38 +33,38 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "Commence System Upgrade"
 echo "----------------------------------------------------------------"
-#sudo apt-get update && sudo apt-get upgrade -y
-#sudo rpi-eeprom-update -d -a
+sudo apt-get update && sudo apt-get upgrade -y
+sudo rpi-eeprom-update -d -a
 echo "----------------------------------------------------------------"
 echo "System Upgrade Completed"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# MC setup
+# MC
 echo "----------------------------------------------------------------"
 echo "Commence MC Setup"
 echo "----------------------------------------------------------------"
-#sudo apt-get update
-#sudo apt-get install -y mc
+sudo apt-get update
+sudo apt-get install -y mc
 echo "----------------------------------------------------------------"
 echo "MC Setup Completed"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# Homebridge setup
-echo "----------------------------------------------------------------"
-echo "Commence Homebridge Setup"
-echo "----------------------------------------------------------------"
-curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y homebridge
-echo "----------------------------------------------------------------"
-echo "Homebridge Interface is reachable at homebridge.local:8581"
-echo "----------------------------------------------------------------"
+# Homebridge
+#echo "----------------------------------------------------------------"
+#echo "Commence Homebridge Setup"
+#echo "----------------------------------------------------------------"
+#curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
+#echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
+#sudo apt-get update
+#sudo apt-get install -y homebridge
+#echo "----------------------------------------------------------------"
+#echo "Homebridge Interface is reachable at homebridge.local:8581"
+#echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# Docker setup
+# Docker
 echo "----------------------------------------------------------------"
 echo "Commence Docker Setup"
 echo "----------------------------------------------------------------"
@@ -76,35 +76,35 @@ echo "Docker Setup Completed"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# Portainer_agent setup
+# Portainer_agent
+#echo "----------------------------------------------------------------"
+#echo "Commence Portainer_agent Setup"
+#echo "----------------------------------------------------------------"
+#sudo docker run -d \
+#    -p 9001:9001 \
+#    --name portainer_agent \
+#    --restart=always \
+#    -v /var/run/docker.sock:/var/run/docker.sock \
+#    -v /var/lib/docker/volumes:/var/lib/docker/volumes \
+#    portainer/agent:2.18.2
+##echo "----------------------------------------------------------------"
+#echo "Portainer Interface is reachable at homebridge.local:9000"
+#echo "----------------------------------------------------------------"
+echo " "
+echo " "
+# Portainer
 echo "----------------------------------------------------------------"
-echo "Commence Portainer_agent Setup"
+echo "Commence Portainer Setup in Docker"
 echo "----------------------------------------------------------------"
-sudo docker run -d \
-    -p 9001:9001 \
-    --name portainer_agent \
-    --restart=always \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v /var/lib/docker/volumes:/var/lib/docker/volumes \
-    portainer/agent:2.18.2
+sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 echo "----------------------------------------------------------------"
 echo "Portainer Interface is reachable at homebridge.local:9000"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# Portainer setup
-#echo "----------------------------------------------------------------"
-#echo "Commence Portainer Setup"
-#echo "----------------------------------------------------------------"
-#sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-#echo "----------------------------------------------------------------"
-#echo "Portainer Interface is reachable at homebridge.local:9000"
-#echo "----------------------------------------------------------------"
-#echo " "
-#echo " "
-# Watch Tower setup
+# Watch Tower
 echo "----------------------------------------------------------------"
-echo "Commence Watch Tower Setup"
+echo "Commence Watch Tower Setup in Docker"
 echo "----------------------------------------------------------------"
 sudo docker run --name="watchtower" -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
 echo "----------------------------------------------------------------"
@@ -112,9 +112,9 @@ echo "Watch Tower Setup Completed"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# HEIMDALL setup
+# HEIMDALL
 echo "----------------------------------------------------------------"
-echo "Commence HEIMDALL Setup"
+echo "Commence HEIMDALL Setup in Docker"
 echo "----------------------------------------------------------------"
 sudo docker run --name=heimdall -d --restart unless-stopped -v /home/kodestar/docker/heimdall:/config -e PGID=1000 -e PUID=1000 -p 8201:80 -p 8200:443 linuxserver/heimdall
 echo "----------------------------------------------------------------"
@@ -122,9 +122,9 @@ echo "HEIMDALL Interface is reachable at homebridge.local:8201"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# Scrypted Install
+# Scrypted
 echo "----------------------------------------------------------------"
-echo "Commence Scypted Docker Setup"
+echo "Commence Scypted Setup in Docker"
 echo "----------------------------------------------------------------"
 sudo docker run --name="scrypted" --network host -d --restart unless-stopped -v ~/.scrypted/volume:/server/volume koush/scrypted
 echo "----------------------------------------------------------------"
@@ -132,9 +132,9 @@ echo "Scrypted Interface is reachable at https://localhost:10443/"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# MQTT Install
+# MQTT
 echo "----------------------------------------------------------------"
-echo "Commence MQTT Setup"
+echo "Commence MQTT Setup  in Docker"
 echo "----------------------------------------------------------------"
 sudo mkdir mosquitto
 sudo mkdir mosquitto/config/
@@ -142,13 +142,13 @@ sudo mkdir mosquitto/data/
 sudo wget https://raw.githubusercontent.com/fog-in-ua/max/main/mosquitto.conf -P /home/pi/mosquitto/config/
 sudo docker run -it --name MQTT --restart=always --net=host -tid -p 1883:1883 -v $(pwd)/mosquitto:/mosquitto/ eclipse-mosquitto
 echo "----------------------------------------------------------------"
-echo "MQTT Setup Completed"
+echo "MQTT Setup Completed in Docker"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-# Z2M setup
+# Zigbee2MQTT
 echo "----------------------------------------------------------------"
-echo "Commence Zigbee2MQTT Setup"
+echo "Commence Zigbee2MQTT Setup in Docker"
 echo "----------------------------------------------------------------"
 wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P data
 
