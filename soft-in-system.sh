@@ -66,8 +66,6 @@ echo "  Scrypted Interface is reachable at https://localhost:10443"
 echo "----------------------------------------------------------------"
 echo " "
 echo " "
-
-
 echo "----------------------------------------------------------------"
 echo "   HEIMDALL Setup"
 echo "----------------------------------------------------------------"
@@ -80,7 +78,27 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "   MQTT Setup in Docker"
 echo "----------------------------------------------------------------"
-#
+sudo apt update && sudo apt upgrade &ndash;y
+sudo apt install mosquitto mosquitto-clients -y
+sudo systemctl enable mosquitto.service
+mosquitto -v
+#sudo mosquitto_passwd -c /etc/mosquitto/passwd ravi
+sudo nano /etc/mosquitto.conf
+
+per_listener_settings true
+
+pid_file /run/mosquitto/mosquitto.pid
+
+persistence true
+persistence_location /var/lib/mosquitto/
+log_dest file /var/log/mosquitto/mosquitto.log
+
+include_dir /etc/mosquitto/conf.d
+allow_anonymous true
+listener 1883 
+
+sudo systemctl restart mosquitto
+sudo systemctl status mosquitto
 echo "----------------------------------------------------------------"
 echo "   MQTT Setup Completed in Docker"
 echo "----------------------------------------------------------------"
