@@ -5,9 +5,10 @@
 #                                                                                                     #
 # curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/soft-in-system.sh | sudo bash - #
 #    System Upgrade                                                                                   #
-#    MC                                                                                               #                                                                                         #
+#    Static IP address                                                                                #
+#    MC                                                                                               #
 #    Homebridge                                                                                       #
-#    Scrypted                                                                                         #                                                                                 #
+#    Scrypted                                                                                         #
 #    HEIMDALL                                                                                         #
 #    MQTT                                                                                             #
 #    Zigbee2MQTT                                                                                      #
