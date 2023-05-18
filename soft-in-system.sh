@@ -87,35 +87,35 @@ echo "----------------------------------------------------------------"
 echo "----------------------------------------------------------------"
 echo "   HEIMDALL Interface is reachable at homebridge.local:8201"
 echo "----------------------------------------------------------------"
-echo " "
-echo " "
-echo "----------------------------------------------------------------"
-echo "   MQTT Setup in Docker"
-echo "----------------------------------------------------------------"
-sudo apt update && sudo apt upgrade &ndash;y
-sudo apt install mosquitto mosquitto-clients -y
-sudo systemctl enable mosquitto.service
-mosquitto -v
-#sudo mosquitto_passwd -c /etc/mosquitto/passwd ravi
-sudo nano /etc/mosquitto.conf
+#echo " "
+#echo " "
+#echo "----------------------------------------------------------------"
+#echo "   MQTT Setup in Docker"
+#echo "----------------------------------------------------------------"
+#sudo apt update && sudo apt upgrade &ndash;y
+#sudo apt install mosquitto mosquitto-clients -y
+#sudo systemctl enable mosquitto.service
+#mosquitto -v
+#   sudo mosquitto_passwd -c /etc/mosquitto/passwd ravi
+#sudo nano /etc/mosquitto/mosquitto.conf
 
-per_listener_settings true
+#per_listener_settings true
 
-pid_file /run/mosquitto/mosquitto.pid
+#pid_file /run/mosquitto/mosquitto.pid
 
-persistence true
-persistence_location /var/lib/mosquitto/
-log_dest file /var/log/mosquitto/mosquitto.log
+#persistence true
+#persistence_location /var/lib/mosquitto/
+#log_dest file /var/log/mosquitto/mosquitto.log
 
-include_dir /etc/mosquitto/conf.d
-allow_anonymous true
-listener 1883 
+#include_dir /etc/mosquitto/conf.d
+#allow_anonymous true
+#listener 1883 
 
-sudo systemctl restart mosquitto
-sudo systemctl status mosquitto
-echo "----------------------------------------------------------------"
-echo "   MQTT Setup Completed in Docker"
-echo "----------------------------------------------------------------"
+#sudo systemctl restart mosquitto
+#sudo systemctl status mosquitto
+#echo "----------------------------------------------------------------"
+#echo "   MQTT Setup Completed in Docker"
+#echo "----------------------------------------------------------------"
 echo " "
 echo " "
 echo "----------------------------------------------------------------"
