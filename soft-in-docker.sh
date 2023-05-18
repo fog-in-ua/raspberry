@@ -120,6 +120,7 @@ echo "----------------------------------------------------------------"
 echo "  Homebridge Setup"
 echo "----------------------------------------------------------------"
 sudo docker run -d --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
+curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/node_update.sh | sudo bash -
 echo "----------------------------------------------------------------"
 echo "  Homebridge Interface is reachable at homebridge.local:8581"
 echo "----------------------------------------------------------------"
