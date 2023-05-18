@@ -1,18 +1,6 @@
 #!/bin/bash
 docker run --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
-version: '2'
-services:
-  homebridge:
-    image: oznu/homebridge:latest
-    restart: always
-    network_mode: host
-    volumes:
-      - ./volumes/homebridge:/homebridge
-    logging:
-      driver: json-file
-      options:
-        max-size: "10mb"
-        max-file: "1"
+
 
 # curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/test.sh | sudo bash -
 # usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20221201165558-if00 -> ../../ttyACM0
