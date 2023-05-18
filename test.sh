@@ -1,5 +1,5 @@
 #!/bin/bash
-
+docker run --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
 version: '2'
 services:
   homebridge:
