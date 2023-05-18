@@ -21,3 +21,19 @@ systemctl poweroff
 
 10.10.10.212
 02:11:32:2e:e4:4f
+
+
+
+    Mosquitto Debian repository
+wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+sudo apt-key add mosquitto-repo.gpg.key
+cd /etc/apt/sources.list.d/
+sudo wget http://repo.mosquitto.org/debian/mosquitto-jessie.list
+sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+sudo wget http://repo.mosquitto.org/debian/mosquitto-buster.list
+apt-get update
+apt-cache search mosquitto
+apt-get install mosquitto
+
+
+
