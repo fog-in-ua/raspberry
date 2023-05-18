@@ -126,7 +126,7 @@ echo "----------------------------------------------------------------"
 echo " "
 echo " "
 echo "----------------------------------------------------------------"
-echo "   Scypted Setup in Docker"
+echo "   Scrypted Setup in Docker"
 echo "----------------------------------------------------------------"
 sudo docker run --name="scrypted" --network host -d --restart unless-stopped -v ~/.scrypted/volume:/server/volume koush/scrypted
 echo "----------------------------------------------------------------"
