@@ -120,8 +120,6 @@ echo "----------------------------------------------------------------"
 echo "  Homebridge Setup"
 echo "----------------------------------------------------------------"
 sudo docker run -d --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
-sudo cd /opt/homebridge
-sudo hb-service update-node
 echo "----------------------------------------------------------------"
 echo "  Homebridge Interface is reachable at homebridge.local:8581"
 echo "----------------------------------------------------------------"
