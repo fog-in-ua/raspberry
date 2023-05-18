@@ -1,26 +1,17 @@
-# ultimateinstall.sh
-curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/home-control.sh | sudo bash -
-    System Upgrade
-    MC
-    Homebridge
-    Docker
-    Portainer_agent
-    Portainer
-    Watch Tower
-    HEIMDALL
-    Scrypted
-    MQTT
-    Zigbee2MQTT
+    Налаштування статичної ІР адреси
+sudo sh -c "echo 'nodhcp' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'interface eth0' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'static ip_address=10.10.10.108/24' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'static routers=10.10.10.1' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'static domain_name_servers=1.1.1.1 8.8.8.8' >> /etc/dhcpcd.conf"
 
-nodhcp
-interface eth0
-static ip_address=10.10.10.108/24
-static routers=10.10.10.1
-static domain_name_servers=1.1.1.1 8.8.8.8
+    Очистити файл
+sudo echo -n > /etc/mosquitto/mosquitto.conf
 
-записати # nameserver 8.8.8.8 в кінецт файла
-echo "# nameserver 8.8.8.8" >> /home/ihor.koliukh/dhcpd.conf
 
+
+    записати # nameserver 8.8.8.8 в кінецт файла
+sudo sh -c "echo 'nameserver 8.8.8.8' >> /etc/resolv.conf"
 
 
 
