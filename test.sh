@@ -1,28 +1,27 @@
 #!/bin/bash
-wget https://raw.githubusercontent.com/fog-in-ua/max/main/configuration.yaml -P data
-sudo docker run \
-   --name zigbee2mqtt \
-   --restart=unless-stopped \
-#   --device=/dev/ttyUSB0 \
-   --device=/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20221201165558-if00:/dev/ttyACM0 \
-   -p 8082:8082 \
-   -v $(pwd)/data:/app/data \
-   -v /run/udev:/run/udev:ro \
-   -e TZ=Europe/Kyiv \
-   koenkk/zigbee2mqtt
+
+version: '2'
+services:
+  homebridge:
+    image: oznu/homebridge:latest
+    restart: always
+    network_mode: host
+    volumes:
+      - ./volumes/homebridge:/homebridge
+    logging:
+      driver: json-file
+      options:
+        max-size: "10mb"
+        max-file: "1"
+
 # curl -sk https://raw.githubusercontent.com/fog-in-ua/raspberry/main/test.sh | sudo bash -
 # usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20221201165558-if00 -> ../../ttyACM0
 
+#sudo apt update
+#sudo apt upgrade
+#sudo apt install mosquitto mosquitto-clients
 
-
-
-sudo apt update
-sudo apt upgrade
-sudo apt install mosquitto mosquitto-clients
-
-
-
-sudo systemctl status mosquitto
+#sudo systemctl status mosquitto
 # Вы должны увидеть текст "active (running)", если служба запущена правильно.
 # https://pimylifeup.com/raspberry-pi-mosquitto-mqtt-server/
 
