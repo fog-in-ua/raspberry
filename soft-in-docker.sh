@@ -152,7 +152,7 @@ echo "   Zigbee2MQTT Setup in Docker"
 echo "----------------------------------------------------------------"
 wget https://raw.githubusercontent.com/fog-in-ua/config/main/configuration.yaml -P data
 
-sudo docker run \
+sudo docker run -d \
    --name zigbee2mqtt \
    --device=/dev/ttyACM0 \
    --net host \
