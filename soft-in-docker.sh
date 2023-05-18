@@ -119,7 +119,7 @@ echo " "
 echo "----------------------------------------------------------------"
 echo "  Homebridge Setup"
 echo "----------------------------------------------------------------"
-sudo docker run --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
+sudo docker run -d --net=host --name=homebridge -v $(pwd)/homebridge:/homebridge oznu/homebridge:latest
 echo "----------------------------------------------------------------"
 echo "  Homebridge Interface is reachable at homebridge.local:8581"
 echo "----------------------------------------------------------------"
