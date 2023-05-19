@@ -23,28 +23,63 @@
 # Ви мали отримати копію GNU General Public License разом із цією програмою.                                #
 # Якщо ні, див <http://www.gnu.org/licenses/>.                                                              #
 #############################################################################################################
-#echo " "
-#echo " "
-#echo "----------------------------------------------------------------"
-#echo "   System Upgrade"
-#echo "----------------------------------------------------------------"
-#sudo apt-get update && sudo apt-get upgrade -y
-#sudo rpi-eeprom-update -d -a
-#echo "----------------------------------------------------------------"
-#echo "   System Upgrade Completed"
-#echo "----------------------------------------------------------------"
-#echo " "
-#echo " "
-#echo "----------------------------------------------------------------"
-#echo "   Docker Setup"
-#echo "----------------------------------------------------------------"
-#sudo curl -fsSL https://get.docker.com -o get-docker.sh
-#sudo sh get-docker.sh
-#sudo usermod -aG docker pi
-#echo "----------------------------------------------------------------"
-#echo "   Docker Setup Completed"
-#echo "----------------------------------------------------------------"
-#echo " "
+echo " "
+echo " "
+echo "----------------------------------------------------------------"
+echo "   System Upgrade"
+echo "----------------------------------------------------------------"
+sudo apt-get update && sudo apt-get upgrade -y
+sudo rpi-eeprom-update -d -a
+echo "----------------------------------------------------------------"
+echo "   System Upgrade Completed"
+echo "----------------------------------------------------------------"
+echo " "
+echo " "
+echo "----------------------------------------------------------------"
+echo "   Static IP address"
+echo "----------------------------------------------------------------"
+sudo sh -c "echo ' ' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'nodhcp' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'interface eth0' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'static ip_address=10.10.10.108/24' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'static routers=10.10.10.1' >> /etc/dhcpcd.conf"
+sudo sh -c "echo 'static domain_name_servers=1.1.1.1 8.8.8.8' >> /etc/dhcpcd.conf"
+echo "----------------------------------------------------------------"
+echo "   Static IP address is set"
+echo "----------------------------------------------------------------"
+echo " "
+echo " "
+echo "----------------------------------------------------------------"
+echo "   MC Setup"
+echo "----------------------------------------------------------------"
+sudo apt-get install -y mc
+echo "----------------------------------------------------------------"
+echo "   MC Setup Completed"
+echo "----------------------------------------------------------------"
+echo " "
+echo " "
+echo "----------------------------------------------------------------"
+echo "  Homebridge Setup"
+echo "----------------------------------------------------------------"
+curl -sSfL https://repo.homebridge.io/KEY.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/homebridge.gpg  > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/homebridge.gpg] https://repo.homebridge.io stable main" | sudo tee /etc/apt/sources.list.d/homebridge.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y homebridge
+echo "----------------------------------------------------------------"
+echo "  Homebridge Interface is reachable at homebridge.local:8581"
+echo "----------------------------------------------------------------"
+echo " "
+echo " "
+echo "----------------------------------------------------------------"
+echo "   Docker Setup"
+echo "----------------------------------------------------------------"
+sudo curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker pi
+echo "----------------------------------------------------------------"
+echo "   Docker Setup Completed"
+echo "----------------------------------------------------------------"
+echo " "
 #echo " "
 #echo "----------------------------------------------------------------"
 #echo "   Portainer Setup in Docker"
